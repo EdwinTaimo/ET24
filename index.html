@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ET TOY'S | Games & Entertainment</title>
+    <style>
+        :root {
+            --bg-color: #020617;
+            --card-bg: #0F172A;
+            --accent: #10B981;
+            --text-main: #F8FAFC;
+            --text-dim: #94A3B8;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: linear-gradient(to bottom, #0F172A, #020617);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+        }
+        .logo-text {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 5px;
+            margin: 0;
+        }
+        .logo-accent { color: var(--accent); }
+        .slogan {
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .section-title {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border-left: 4px solid var(--accent);
+            padding-left: 15px;
+            margin-bottom: 30px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .game-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #1e293b;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .game-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .game-info h3 { margin: 0 0 10px 0; font-size: 1.4rem; }
+        .price { color: var(--accent); font-size: 1.6rem; font-weight: 800; margin: 15px 0; }
+        .btn-order {
+            background-color: var(--accent);
+            color: #020617;
+            text-decoration: none;
+            text-align: center;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: block;
+            transition: opacity 0.2s;
+        }
+        .btn-order:hover { opacity: 0.9; }
+        .location-box {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 50px;
+            text-align: center;
+        }
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="logo-text">ET <span class="logo-accent">TOY'S</span></h1>
+        <div class="slogan">Games & Entertainment</div>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Nossa Coleção</h2>
+        <div class="grid" id="game-grid">
+            <!-- Os jogos serão inseridos aqui via JS -->
+        </div>
+
+        <div class="location-box">
+            <h2 style="color: var(--accent); margin-top:0;">ONDE ESTAMOS</h2>
+            <p>📍 BEIRA BAIXA | 📍 BEIRA MAQUININO</p>
+            <p style="color: var(--text-dim)">Moçambique</p>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 ET TOY'S - Todos os direitos reservados.
+    </footer>
+
+    <script>
+        const phone = "258833973761";
+        const games = [
+            { name: "UNO WILD (Clássico)", price: "300 MT" },
+            { name: "UNO ALL WILD", price: "300 MT" },
+            { name: "UNO FLIP", price: "300 MT" },
+            { name: "UNO NO MERCY", price: "350 MT" },
+            { name: "UNO LILO & STITCH", price: "300 MT" },
+            { name: "30 SECONDS", price: "1.000 MT" },
+            { name: "CLASSIC JENGA", price: "1.000 MT" },
+            { name: "UNO STACKO", price: "1.500 MT" },
+            { name: "DOMINOES", price: "850 MT" },
+            { name: "MONOPOLY", price: "2.250 MT" },
+            { name: "XADREZ", price: "1.850 MT" },
+            { name: "MIKADO SPIEL", price: "350 MT" },
+            // Novos Jogos Adicionados
+            { name: "CATAN", price: "3.500 MT" },
+            { name: "SCRABBLE", price: "1.200 MT" },
+            { name: "CLUE (Detetive)", price: "2.100 MT" },
+            { name: "BATALHA NAVAL", price: "950 MT" }
+        ];
+
+        const grid = document.getElementById('game-grid');
+        games.forEach(game => {
+            const card = document.createElement('div');
+            card.className = 'game-card';
+            const msg = encodeURIComponent(`Olá! Gostaria de encomendar o jogo ${game.name} na ET TOY'S.`);
+            card.innerHTML = `
+                <div class="game-info">
+                    <h3>${game.name}</h3>
+                    <div class="price">${game.price}</div>
+                </div>
+                <a href="https://wa.me/${phone}?text=${msg}" class="btn-order" target="_blank">ENCOMENDAR VIA WHATSAPP</a>
+            `;
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
